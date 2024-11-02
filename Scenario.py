@@ -1,7 +1,7 @@
 import Person as p
 
 class Scenario:
-    def __init__(self, name,type = "Normal", conditions = {}):
+    def __init__(self, name,type = "normal", conditions = {}):
         self.name = name
         self.type = type
         self.choices = []
@@ -26,6 +26,11 @@ class Scenario:
     def chooseChoice(self, choice):
         self.chsnChoice = choice
     
+    def isClue(self):
+        if (type == "progression"):
+            return True
+        return False
+
     def checkCondition(self, protag):
         for condition in self.conditions.keys():
             if (condition == "occupation"):
@@ -40,17 +45,17 @@ class Scenario:
         return True
     
     def displayScenario(self):
-        print("Name:  " + self.name)
-        print("Type:  " + self.type)
-        print("Description:  " + self.description)
+        print("-Name:  " + self.name)
+        print("-Type:  " + self.type)
+        print("-Description:  " + self.description)
         conds = ""
         for condition in self.conditions.keys():
             conds += condition + " -- " + str(self.conditions[condition]) + "  &  "
-        print("Conditions:  " + conds)
+        print("-Conditions:  " + conds)
         for choice in self.choices:
             choice.print()
         if (self.chsnChoice != None):
-            print("Chosen Choice:  " + self.chsnChoice.name)
+            print("-Chosen Choice:  " + self.chsnChoice.name)
 
 
 class Choice:
@@ -63,14 +68,14 @@ class Choice:
         self.conditions[attribute] = value
 
     def print(self):
-        print(self.name)
+        print("Choice:  " + self.name)
     
     def addOutcome(self, outcome):
         self.outcome = outcome
 
-class Weird(Choice):
+class Weird(Scenario):
     pass
-class Normal(Choice):
+class Normal(Scenario):
     pass
         
 class Outcome:
@@ -91,6 +96,8 @@ class Outcome:
                 protag.health == self.outcome[outcome]
             if (outcome == "energy"):
                 protag.energy == self.outcome[outcome]
+            if (outcome == "network"):
+                protag.network == self.outcome[outcome]
 
     def setNextScenario(self, next):
         self.next = next # Scenario class
