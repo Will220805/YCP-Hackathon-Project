@@ -17,19 +17,19 @@ class RelationshipGame:
 
     def relationship_scenarios(self):
         while self.game_running and self.scenario_count < 20:
-            sNum = r.randint(1,5)
+            sNum = r.randint(1,4)
             if self.doubt_meter <= 0:
-                if (sNum in self.neutral_scenarios):
+                if (sNum in self.obvious_scenarios):
                     self.scenario_count += 1
                     if (sNum == 1):
-                        self.neutral_scenario1()
-                        self.neutral_scenarios.remove(sNum)
+                        self.obvious_scenario1()
+                        self.obvious_scenarios.remove(sNum)
                     elif (sNum == 2):
-                        self.neutral_scenario2()
-                        self.neutral_scenarios.remove(sNum)
+                        self.obvious_scenario2()
+                        self.obvious_scenarios.remove(sNum)
                     elif (sNum == 3):
-                        self.neutral_scenario3()
-                        self.neutral_scenarios.remove(sNum)
+                        self.obvious_scenario3()
+                        self.obvious_scenarios.remove(sNum)
             elif self.doubt_meter >= 4:
                 if (sNum in self.subtle_scenarios):
                     self.scenario_count += 1
@@ -43,17 +43,17 @@ class RelationshipGame:
                         self.subtle_scenario3()
                         self.subtle_scenarios.remove(sNum)
             else:
-                if (sNum in self.obvious_scenarios):
+                if (sNum in self.neutral_scenarios):
                     self.scenario_count += 1
                     if (sNum == 1):
-                        self.obvious_scenario1()
-                        self.obvious_scenarios.remove(sNum)
+                        self.neutral_scenario1()
+                        self.neutral_scenarios.remove(sNum)
                     elif (sNum == 2):
-                        self.obvious_scenario2()
-                        self.obvious_scenarios.remove(sNum)
+                        self.neutral_scenario2()
+                        self.neutral_scenarios.remove(sNum)
                     elif (sNum == 3):
-                        self.obvious_scenario3()
-                        self.obvious_scenarios.remove(sNum)
+                        self.neutral_scenario3()
+                        self.neutral_scenarios.remove(sNum)
 
         print(f"\nYour final Doubt Meter level is: {self.doubt_meter}")
         self.end_game()
