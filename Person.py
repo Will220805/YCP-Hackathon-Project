@@ -2,21 +2,17 @@ import random as r
 
 class Person:
     # added Status, other places not updated
-    def __init__(self, name = "Bob Ross", gender = "Male", age = r.randint(1,100), occupation = r.randint(0,2), health = 10, network = [], status = "Fresh"):
+    def __init__(self, name = "Bob Ross", gender = "Male", age = r.randint(1,100), occupation = "unemployed", health = 10, network = [], cautious = 0):
         self.name = name
         self.gender = gender
         self.age = age
-        if (occupation == 0):
+        if (occupation != "unemployed" | occupation != "student" | occupation != "employed"):
             self.occupation = "unemployed"
-        elif (occupation == 1):
-            self.occupation = "student"
-        elif (occupation == 2):
-            self.occupation = "employed"
         else:
             self.occupation = occupation
         self.health = health
         self.network = network #list of Network type variables
-        self.status = status
+        self.cautious = cautious
         
     def print(self):
         print("__________________________________")

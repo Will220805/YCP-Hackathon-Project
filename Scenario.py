@@ -1,7 +1,7 @@
 import Person as p
 
 class Scenario:
-    def __init__(self, name,type = "Normal", conditions = {}):
+    def __init__(self, name,type = "normal", conditions = {}):
         self.name = name
         self.type = type
         self.choices = []

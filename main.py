@@ -4,7 +4,7 @@ import scenarioLib as lib
 
 if __name__ == '__main__':
     # Test Person class
-    protag = p.Person("Keanu Reaves", "Male", 43, 1,7)
+    protag = p.Person("Keanu Reaves", "Male", 43, "employed",7)
     protag.print()
     
     npc1 = p.Person("Person One", "Male", 3, 1)
