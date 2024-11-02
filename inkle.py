@@ -9,18 +9,17 @@ class RelationshipGame:
         print("You've been dating your partner for six months, but recently you've noticed a few unsettling things.")
         print("Throughout this game, you'll experience different situations and make choices that affect your doubt level.")
         print("Let's see how your relationship unfolds...\n")
-        
-        self.neutral_scenarios()
+        self.relationship_scenarios()
 
     def relationship_scenarios(self):
         while self.game_running and self.scenario_count < 5:
             self.scenario_count += 1
-            if self.doubt_meter == 1:
+            if self.doubt_meter <= 0:
                 self.obvious_scenario()
-            elif self.doubt_meter == 3:
+            elif self.doubt_meter >= 4:
                 self.subtle_scenario()
             else:
-                self.same_scenario()
+                self.neutral_scenario()
 
         print(f"\nYour final Doubt Meter level is: {self.doubt_meter}")
         self.end_game()
@@ -87,7 +86,6 @@ class RelationshipGame:
             self.doubt_meter += 1
         else:
             print("Invalid choice. Try again.")
-            self.same_scenario()
 
     def end_game(self):
         print("\nThank you for playing 'Signs of the Relationship.'")
