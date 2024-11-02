@@ -15,27 +15,29 @@ class goSchool(s.Scenario):
         print(self.checkCondition(protag))
         self.displayScenario()
 
-    def isClue(self):
-        if (type == "progression"):
-            return True
         
 class oldFriend(s.Scenario):
     pass
     def __init__(self, protag, npc1):
-        super().__init__("goSchool", "progression", {"occupation": "student", "health": 7})
-        self.addDescription("You ran into " + npc1 + ", an Old Friend while running errands. He called you with excitement!")    
+        super().__init__("oldFriend", "progression", {"energy": 2, "network": None})
+        self.addDescription("You ran into " + npc1.name + ", an Old Friend while running errands. He called you with excitement!")    
         
-        greet = s.Normal("Short Greeting", [])
+        greet = s.Choice("Short Greeting", [])
         self.addChoice(greet)
-        self.defineCondition()
-        coffee  = s.Normal("Wanna get some coffee?")
+
+        coffee  = s.Choice("Wanna get some coffee?")
+        cOut = s.Outcome({"energy": 4})
+        cOut.setNextScenario("goSchool")
+        coffee.addOutcome(cOut)
         self.addChoice(coffee)
-        whenMet = s.Weird("Where we know each other?")
+
+        whenMet = s.Choice("Where we know each other?")
+        wOut = s.Outcome({"network": p.Network(protag, npc1, "old friend"), "health": 3})
+        wOut.setNextScenario("goSchool")
+        whenMet.addOutcome(wOut)
         self.addChoice(whenMet)
 
         print(self.checkCondition(protag))
         self.displayScenario()
 
-    def isClue(self):
-        if (type == "progression"):
-            return True
+

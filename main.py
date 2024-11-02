@@ -8,9 +8,9 @@ if __name__ == '__main__':
     protag.print()
     
     npc1 = p.Person("Person One", "Male", 3, 1)
-    nw = p.Network(protag, npc1, "friends")
-    nw.printNetwork()
-    protag.print()
+    # nw = p.Network(protag, npc1, "friends")
+    # nw.printNetwork()
+    # protag.print()
 
     #Test Scenario matching
     # goSchool = s.Scenario("goSchool", "Progression", {"occupation": "student", "health": 7})
@@ -25,3 +25,9 @@ if __name__ == '__main__':
     goSchool = lib.goSchool(protag)
     goSchool.chooseChoice(s.Choice("Go to class"))
     goSchool.displayScenario()
+
+    oldFriend = lib.oldFriend(protag, npc1)
+    oldFriend.chooseChoice(s.Choice("Wanna get some coffee?"))
+    oldFriend.displayScenario()
+    
+    protag.print()

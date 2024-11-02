@@ -6,7 +6,7 @@ class Person:
         self.name = name
         self.gender = gender
         self.age = age
-        if (occupation != "unemployed" | occupation != "student" | occupation != "employed"):
+        if (occupation != "unemployed" or occupation != "student" or occupation != "employed"):
             self.occupation = "unemployed"
         else:
             self.occupation = occupation
