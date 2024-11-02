@@ -17,7 +17,7 @@ class RelationshipGame:
 
     def relationship_scenarios(self):
         while self.game_running and self.scenario_count < 20:
-            sNum = r.randint(1,5)
+            sNum = r.randint(1,3)
             if self.doubt_meter <= 0:
                 if (sNum in self.neutral_scenarios):
                     self.scenario_count += 1
