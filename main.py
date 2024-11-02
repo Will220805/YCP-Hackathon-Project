@@ -31,3 +31,8 @@ if __name__ == '__main__':
     oldFriend.displayScenario()
     
     protag.print()
+
+    import inkle
+
+    relationship = inkle.RelationshipGame()
+    

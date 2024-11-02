@@ -11,7 +11,7 @@ if 'score' not in st.session_state:
 
 def go_to_page(page_name):
     st.session_state.page = page_name
-
+2
 def reset_game():
     st.session_state.page = 'menu'
     st.session_state.score = 0
