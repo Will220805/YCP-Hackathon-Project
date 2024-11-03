@@ -25,6 +25,7 @@ def type_title(text, delay=0.1):
         title_placeholder.title(typed_text)  # Update placeholder with each character as a title
         time.sleep(delay)
 
+
 if 'page' not in st.session_state:
     st.session_state.page = 'menu'
 if 'score' not in st.session_state:
