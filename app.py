@@ -27,6 +27,8 @@ def scene1():
     }
     return jsonify(data)
 
+@web.route('/chose', methods = ['POST'])
+def scene1():
 
 if __name__ == '__main__':
    # web.run(host='192.168.1.5')

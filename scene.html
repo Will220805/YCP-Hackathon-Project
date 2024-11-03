@@ -6,12 +6,25 @@
     <!-- Reference a link to a CDN for Axios here -->
 	<!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
 </head>
-<body>
+<body onload = 'startGame(); setScenePrompt()'>
     <script>
-        // function setScenePrompt() {
-        //     const changeText = document.querySelector("#prompt");
-        //     changeText.textContent = startGame;
-        // }
+        function setButtonPrompt() {
+            Promise.race([
+                fetch("http://127.0.0.1:8052/chosen", {
+                    method: "POST",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    },
+                }),
+                new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 10000))
+            ])
+            .then(response => response.json())
+            .then(jsonData => {
+                console.log(jsonData)
+            }); 
+            
+        }
         function startGame() {
             Promise.race([
                 fetch("http://127.0.0.1:8052/start_game", {
@@ -26,8 +39,6 @@
             .then(response => response.json())
             .then(jsonData => {
                 console.log(jsonData)
-                const changeText = document.querySelector("#prompt");
-                changeText.textContent = jsonData;
             }); 
             
         }
@@ -86,20 +97,15 @@
     }
     </style>
     <div>
-        <h2>Scenario 1</h2>
-        <br>
+        
         <button id = change_text onclick="setScenePrompt()"> Change Scene Text (Test)</button>
         <br>
-
         <br>
-        <p1 id = prompt></p1>
         <br>
-
         <br>
         <button id = button1 value = "option1" onclick='setButtonPrompt()'> Option 1</button>
         <button id = button2 value = "option2" onclick="setButtonPrompt()"> Option 2</button>
         <button id = button3 value = "option3" onclick="setButtonPrompt()"> Option 3</button>
-        <br>
         <br>
         <br>
         

@@ -68,8 +68,7 @@
         text-align: center;
     }
     p {
-        font-size: 25px;
-        font-weight: normal;
+        font-size: 20px;
         text-align: center;
     }
 
@@ -81,16 +80,22 @@
         color: #2E475D;    
 }
     button {
-        font-size: 18px;
+        font-size: 22px;
+        left: 50%;
+        transform: translateY(-50%);
+        -ms-transform: translateY(-80%);
+        position: absolute;
         font-family: 'Times New Roman', Times, serif;
     }
     </style>
     <div>
         <h2>Scenario 1</h2>
         <br>
-        <p1 id = prompt></p1>
+        <p1 id = prompt> </p1>
+        <p>Welcome to 'Signs of the Relationship'!</p>
+        <p>You've been dating your partner for six months, but recently you've noticed a few unsettling things.</p>
+        <p>Throughout this game, you'll experience different situations and make choices that affect your doubt level.</p>
+        <p>Let's see how your relationship unfolds...</p>
         <br>
-        <button id = test onclick="window.location.href = 'Scene.html';startGame()">Get Started (Test)</button>
-        <br>
-        <button id = change_text onclick="setScenePrompt()"> Change Scene Text (Test)</button>
+        <button id = test onclick="window.location.href = 'Scene.html'">Get Started (Test)</button>
         <br>
