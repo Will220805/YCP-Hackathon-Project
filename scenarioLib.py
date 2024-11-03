@@ -102,40 +102,77 @@ class RelationshipGame:
 
     def obvious_scenario2(self):
         # An obvious red flag scenario if doubt is low
-        print(f"\nScenario {self.scenario_count}: Your partner checks your phone without asking.")
-        print("They say they're just 'making sure' you're being honest.")
-        print("1. Ask them to respect your privacy\n2. Allow it, hoping it reassures them\n3. Confront them and express discomfort")
-
+        print(f"\nScenario {self.scenario_count}: Arguement.")
+        print(" During an argument, your partner loses control and throws something across the room, narrowly missing you.")
+        print("n1. Calmly ask to take a break and revisit the conversation later.\n2. Apologize and try to calm them down, blaming yourself.\n3. Leave the room immediately to protect yourself and avoid further escalation. ")
         choice = input("Enter the number of your choice: ")
 
         if choice == "1":
-            print("You ask them to respect your privacy, but they brush it off.")
+            print("Calmly ask to take a break and revisit the conversation later..")
             self.doubt_meter += 0
         elif choice == "2":
-            print("You let them check, feeling uneasy but hoping it calms their fears.")
+            print("Apologize and try to calm them down, blaming yourself.")
             self.doubt_meter -= 1
         elif choice == "3":
-            print("You express discomfort, and they respond with defensiveness.")
+            print("Leave the room immediately to protect yourself and avoid further escalation. ")
             self.doubt_meter += 1
         else:
             print("Invalid choice. Try again.")
 
     def obvious_scenario3(self):
         # An obvious red flag scenario if doubt is low
-        print(f"\nScenario {self.scenario_count}: Your partner checks your phone without asking.")
-        print("They say they're just 'making sure' you're being honest.")
-        print("1. Ask them to respect your privacy\n2. Allow it, hoping it reassures them\n3. Confront them and express discomfort")
+        print(f"\nScenario {self.scenario_count}: You mention wanting to visit family over the weekend, and your partner becomes furious.")
+        print("saying, “If you leave, don’t bother coming back. You don’t get to just do whatever you want without thinking about me")
+        print("n1. Suggest a compromise, like visiting family for part of the weekend and spending the rest of the time with them.\n2. Agree to stay home to avoid their anger and make them feel more secure\n3. Calmly tell them that their reaction is unfair ")
 
         choice = input("Enter the number of your choice: ")
 
         if choice == "1":
-            print("You ask them to respect your privacy, but they brush it off.")
+            print("Suggest a compromise, like visiting family for part of the weekend and spending the rest of the time with them.")
             self.doubt_meter += 0
         elif choice == "2":
-            print("You let them check, feeling uneasy but hoping it calms their fears.")
+            print("Agree to stay home to avoid their anger and make them feel more secure.")
             self.doubt_meter -= 1
         elif choice == "3":
-            print("You express discomfort, and they respond with defensiveness.")
+            print("Calmly tell them that their reaction is unfair.")
+            self.doubt_meter += 1
+        else:
+            print("Invalid choice. Try again.")
+    def obvious_scenario4(self):
+        # An obvious red flag scenario if doubt is low
+        print(f"\nScenario {self.scenario_count}: Your partner demands access to your bank account, saying, “We need to share everything if this relationship is going to work.")
+        print("I don’t trust you unless I can see where your money is going.")
+        print("n1. Agree to discuss your spending and big purchases together without sharing full access.\n2.Reluctantly agree to share your bank account information, even if it makes you uncomfortable.\n3. Firmly refuse, explaining that financial independence is important to you. ")
+
+        choice = input("Enter the number of your choice: ")
+
+        if choice == "1":
+            print("Agree to discuss your spending and big purchases together without sharing full access")
+            self.doubt_meter += 0
+        elif choice == "2":
+            print("Reluctantly agree to share your bank account information, even if it makes you uncomfortable.")
+            self.doubt_meter -= 1
+        elif choice == "3":
+            print("Firmly refuse, explaining that financial independence is important to you.")
+            self.doubt_meter += 1
+        else:
+            print("Invalid choice. Try again.")
+    def obvious_scenario5(self):
+        # An obvious red flag scenario if doubt is low
+        print(f"\nScenario {self.scenario_count}: You’re at a social gathering, and your partner makes an embarrassing comment about you in front of others")
+        print("then laughs and says, “I’m just kidding!")
+        print("n1. Give a slight smile and change the subject, not giving their comment much energy.\n2.Laugh along to keep the peace, even though it hurts.\n3. Pull them aside afterward and explain that their comment hurt you. . ")
+
+        choice = input("Enter the number of your choice: ")
+
+        if choice == "1":
+            print("Give a slight smile and change the subject, not giving their comment much energy.")
+            self.doubt_meter += 0
+        elif choice == "2":
+            print("Laugh along to keep the peace, even though it hurts")
+            self.doubt_meter -= 1
+        elif choice == "3":
+            print("Pull them aside afterward and explain that their comment hurt you. ")
             self.doubt_meter += 1
         else:
             print("Invalid choice. Try again.")
