@@ -5,11 +5,6 @@ import scenarioLib as lib
 import time
 import inkle
 
-
-if st.button == "Choice1":
-    st.write("Choice1")
-
-
 # Function to display text with a typing effect
 def type_text(text, delay=0.1):
     typed_text = ""
@@ -20,6 +15,7 @@ def type_text(text, delay=0.1):
         text_placeholder.markdown(f"**{typed_text}**")  # Update placeholder with each character
         time.sleep(delay)
 
+# Function to display title with a typing effect
 def type_title(text, delay=0.1):
     typed_text = ""
     title_placeholder = st.empty()  # Placeholder for updating the title
@@ -28,10 +24,6 @@ def type_title(text, delay=0.1):
         typed_text += char
         title_placeholder.title(typed_text)  # Update placeholder with each character as a title
         time.sleep(delay)
-
-# Example usage
-#st.title("Typing Effect Example")
-#type_text("Hello, welcome to this interactive experience!", delay=0.05)
 
 if 'page' not in st.session_state:
     st.session_state.page = 'menu'
