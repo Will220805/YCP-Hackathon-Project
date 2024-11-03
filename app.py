@@ -8,6 +8,7 @@ import sys
 web = Flask(__name__)
 CORS(web)
 rl = None
+
 @web.route('/start_game', methods = ['POST'])
 def start_game():
     global rl
@@ -26,6 +27,12 @@ def scene1():
         "choice": choices
     }
     return jsonify(data)
+
+@web.route('/chosen', methods = ['POST'])
+def choose():
+    doubt = json.loads(request.data)
+    rl.doubt_meter += int(doubt)
+    return jsonify(rl.doubt_meter)
 
 if __name__ == '__main__':
    # web.run(host='192.168.1.5')

@@ -12,9 +12,6 @@ class RelationshipGame:
         self.subtle_scenarios = [1, 2, 3, 4, 5]
         self.obvious_scenarios = [1, 2, 3, 4, 5]
 
-    def writeSth(str):
-        return str
-
     def start_game(self):
         string = "Welcome to 'Signs of the Relationship'!" + "\n" + "You've been dating your partner for six months, but recently you've noticed a few unsettling things." + "\n" + "Throughout this game, you'll experience different situations and make choices that affect your doubt level."  + "\n" +  "Let's see how your relationship unfolds...\n"
         return string
@@ -33,52 +30,49 @@ class RelationshipGame:
     def relationship_scenarios(self):
         if self.doubt_meter <= 0:
             sNum = self.get_random_scenario(self.obvious_scenarios)
-            if (sNum in self.obvious_scenarios):
-                self.scenario_count += 1
-                if (sNum == 1):
-                    self.obvious_scenarios.remove(sNum)
-                    return self.obvious_scenario1()
-                elif (sNum == 2):
-                    self.obvious_scenarios.remove(sNum)
-                    return self.obvious_scenario2()
-                elif (sNum == 3):
-                    self.obvious_scenarios.remove(sNum)
-                    return self.obvious_scenario3()
+            self.scenario_count += 1
+            if (sNum == 1):
+                return self.obvious_scenario1()
+            elif (sNum == 2):
+                return self.obvious_scenario2()
+            elif (sNum == 3):
+                return self.obvious_scenario3()
+            elif (sNum == 4):
+                return self.obvious_scenario4()
+            elif (sNum == 5):
+                return self.obvious_scenario5()
             else:
                 return self.end_game()
         elif self.doubt_meter >= 4:
             sNum = self.get_random_scenario(self.subtle_scenarios)
-            if (sNum in self.subtle_scenarios):
-                self.scenario_count += 1
-                if (sNum == 1):
-                    self.subtle_scenarios.remove(sNum)
-                    return self.subtle_scenario1()
-                elif (sNum == 2):
-                    self.subtle_scenarios.remove(sNum)
-                    return self.subtle_scenario2()
-                elif (sNum == 3):
-                    self.subtle_scenarios.remove(sNum)
-                    return self.subtle_scenario3()
+            self.scenario_count += 1
+            if (sNum == 1):
+                return self.subtle_scenario1()
+            elif (sNum == 2):
+                return self.subtle_scenario2()
+            elif (sNum == 3):
+                return self.subtle_scenario3()
+            elif (sNum == 4):
+                return self.subtle_scenario4()
+            elif (sNum == 5):
+                return self.subtle_scenario5()
             else:
                 return self.end_game()
         elif self.doubt_meter < 4 and self.doubt_meter > 0:
             sNum = self.get_random_scenario(self.neutral_scenarios)
-            if (sNum in self.neutral_scenarios):
-                self.scenario_count += 1
-                if (sNum == 1):
-                    self.neutral_scenarios.remove(sNum)
-                    print(self.neutral_scenario1(), str(self.scenario_count))
-                    return self.neutral_scenario1()
-                elif (sNum == 2):
-                    self.neutral_scenarios.remove(sNum)
-                    print(self.neutral_scenario1(), str(self.scenario_count))
-                    return self.neutral_scenario2()
-                elif (sNum == 3):
-                    self.neutral_scenarios.remove(sNum)
-                    print(self.neutral_scenario1(), str(self.scenario_count))
-                    return self.neutral_scenario3()
+            self.scenario_count += 1
+            if (sNum == 1):
+                return self.neutral_scenario1()
+            elif (sNum == 2):
+                return self.neutral_scenario2()
+            elif (sNum == 3):
+                return self.neutral_scenario3()
+            elif (sNum == 4):
+                return self.neutral_scenario4()
+            elif (sNum == 5):
+                return self.neutral_scenario5()
             else:
-                print(self.end_game(), str(self.scenario_count))
+                print(self.end_game(), str(self.scenario_count), sNum)
                 return self.end_game()
         # return self.end_game()
     
@@ -293,6 +287,7 @@ class RelationshipGame:
 
     def end_game(self):
         string = "\nThank you for playing 'Signs of the Relationship.'" + "\n" + "We hope this experience helped you recognize the importance of healthy relationship dynamics."
+        print("Your final Doubt Meter Level is:  " + str(self.doubt_meter) + "!!")
         self.game_running = False
         return string, {0: "finished"}
 

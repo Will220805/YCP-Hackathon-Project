@@ -6,8 +6,28 @@
     <!-- Reference a link to a CDN for Axios here -->
 	<!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
 </head>
-<body onload = 'startGame(); setScenePrompt()'>
+<body onload = "startGame(), setScenePrompt()">
     <script>
+        function sendBack(id) {
+            var doubt = document.getElementById(id).value
+            console.log(doubt)
+            Promise.race([
+                fetch("http://127.0.0.1:8052/chosen", {
+                    method: "POST",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(doubt),
+                    dataType: "json"
+                }),
+                new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 10000))
+            ])
+            .then(response => response.json())
+            .then(jsonData => {
+                console.log(jsonData)
+            }); 
+        }
         function setButtonPrompt() {
             Promise.race([
                 fetch("http://127.0.0.1:8052/chosen", {
@@ -63,7 +83,8 @@
                     console.log("#button" + (c+2))
                     const changeButton = document.querySelector("#button" + (c+2)+"");
                     changeButton.innerHTML = jsonData.choice[c];
-                    document.getElementById("button" + (c+2)+"").value = -1
+                    document.querySelector("#button" + (c+2)+"").value = c
+                    console.log(document.querySelector("#button" + (c+2)+"").value)
                 }
                 
             }
@@ -92,8 +113,10 @@
         color: #2E475D;    
 }
     button {
-        font-size: 18px;
-        font-family: 'Times New Roman', Times, serif;
+        font-size: 22px;
+        text-align: center;
+        font-family: 'Lexend Deca', sans-serif;
+        color: #2E475D; 
     }
     </style>
     <div>
@@ -101,11 +124,16 @@
         <button id = change_text onclick="setScenePrompt()"> Change Scene Text (Test)</button>
         <br>
         <br>
+        <p id="prompt"></p>
         <br>
         <br>
-        <button id = button1 value = "option1" onclick='setButtonPrompt()'> Option 1</button>
-        <button id = button2 value = "option2" onclick="setButtonPrompt()"> Option 2</button>
-        <button id = button3 value = "option3" onclick="setButtonPrompt()"> Option 3</button>
+        <button id = button1 value = "option1" onclick='sendBack(this.id),setScenePrompt()'> Option 1</button>
+        <br>
+        <br>
+        <button id = button2 value = "option2" onclick="sendBack(this.id),setScenePrompt()"> Option 2</button>
+        <br>
+        <br>
+        <button id = button3 value = "option3" onclick="sendBack(this.id),setScenePrompt()"> Option 3</button>
         <br>
         <br>
         
