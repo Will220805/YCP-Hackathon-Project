@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Relationship Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Reference a link to a CDN for Axios here -->
+	<!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+</head>
+<body>
+    <script>
+        function getScene() {
+            fetch("http://127.0.0.1:5000/", {
+        }
+        
+        function doAction(intent) {
+            var ip = document.getElementById("misty-robot-ip-address").value
+            var event_name = document.getElementById("misty-event-name").value
+            var affect = document.getElementById("affectRange").value
+            var rapport = document.getElementById("rapportRange").value
+            var level = document.getElementById("levelRange").value
+            var next = document.getElementById("next_move").value
+            var step = document.getElementById("step").value
+            var sc = document.getElementsByName("script")
+
+            for (i = 0; i < sc.length; i++) {
+                if (sc[i].checked) {
+                    var script = sc[i].value
+                }
+            }
+
+            var g = document.getElementsByName("gaze")
+
+            for (i = 0; i < g.length; i++) {
+                if (g[i].checked) {
+                    var gaze = g[i].value
+                }
+            }
+
+            var v = document.getElementsByName("verbal")
+
+            for (i = 0; i < v.length; i++) {
+                if (v[i].checked) {
+                    var verbal = v[i].value
+                }
+            }
+            var t = document.getElementsByName("task_state")
+
+            for (j = 0; j < t.length; j++) {
+                if (t[j].checked) {
+                    var task = t[j].value
+                }
+            }
+
+            var  data = {
+                // "Skill":skill_id,
+                "EventName": event_name,
+                "Intent": intent,
+                "Affect": affect,
+                "Rapport": rapport,
+                "Level": level,
+                "Gaze": gaze,
+                "Verbal": verbal,
+                "Next": next,
+                "Task": task,
+                "Step": step,
+                "Script": script
+            };
+            console.log(data);
+            Promise.race([
+                // fetch('http://' + ip + '/behavior_generator', {
+                fetch("http://127.0.0.1:5000/behavior_generator", {
+                    method: 'POST',
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data),
+                    dataType: "json"
+                }),
+                new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 10000))
+            ])
+            .then(response => response.json())
+            .then(jsonData => console.log(jsonData)); 
+        }
+
+    </script>
+    <style> 
+    p2 {
+        font-size: 30px;
+        font-weight: bold;
+    }
+    button {
+        font-size: 18px;
+        font-family: 'Times New Roman', Times, serif;
+    }
+    </style>
+    <div>
+        <head2>Scenario 1</head2>
+        fetch
+        <br>
+        <br>
+        <p2>
+        Intents
+        </p2>
+        <br>
+        <button onclick="doAction({'name': 'Confirm'})">Confirm</button>
+        <button onclick="doAction({'name': 'Inquire'})">Inquire</button>
+        <button onclick="doAction({'name': 'Inform'})">Inform</button>
+        <br>
+        <button onclick="doAction({'name': 'Instruct'})">Instruct</button>
+        <button onclick="doAction({'name': 'Social'})">Social</button>
+        <button onclick="doAction({'name': 'Persist'})">Persist</button>
+        <br>
+        <button onclick="doAction({'name': 'Reconcile Beliefs'})">Reconcile Beliefs</button>
+        <button onclick="doAction({'name': 'Follow Script'})">Follow Scripts</button>
+        <br>
+        <br>
+        <p2>
+        States
+        </p2>
+        <br>
+        <br>
+        <label for="affectRange">Affect (between -1 and 1):</label>
+        <input type="range" min="-10" max="10" value="0" class="slider" id="affectRange">
+        <br>
+        <label for="levelRange">Level (between 1 and 4):</label>
+        <input type="range" min="1" max="4" value="1" class="slider" id="levelRange">
+        <br>
+        <label for="rapportRange">Rapport (between 0 and 1):</label>
+        <input type="range" min="0" max="1" value="0" class="slider" id="rapportRange">
+        <br>
+        <br>
+        <p>Gaze:</p>
+
+        <form>
+          <input type="radio" id="task" name="gaze" value="Task">
+          <label for="Task">Task</label><br>
+          <input type="radio" id="robot" name="gaze" value="Robot">
+          <label for="Robot">Robot</label><br>
+          <input type="radio" id="away" name="gaze" value="Away">
+          <label for="Away">Away</label>
+        </form> 
+        <br>
+        <p>Verbal:</p>
+
+        <form>
+          <input type="radio" id="question" name="verbal" value="Question">
+          <label for="question">Question</label><br>
+          <input type="radio" id="compliment" name="verbal" value="Compliment">
+          <label for="compliment">Compliment</label><br>
+          <input type="radio" id="thankyou" name="verbal" value="Thank_You">
+          <label for="thank_you">Thank You</label>
+        </form> 
+        <br>
+        <label for="next_move">Next Move:</label>
+        <input class="button" id="next_move">
+        <br>
+        <p>Task State:</p>
+
+        <form>
+          <input type="radio" id="unstarted" name="task_state" value="unstarted">
+          <label for="unstarted">Unstarted</label><br>
+          <input type="radio" id="in_progress" name="task_state" value="in-progress">
+          <label for="in_progress">In Progress</label><br>
+          <input type="radio" id="has_no_error" name="task_state" value="has-no-error">
+          <label for="has_no_error">Has No Error</label><br>
+          <input type="radio" id="just_made_a_mistake" name="task_state" value="just-made-a-mistake">
+          <label for="just_made_a_mistake">Just Made a Mistake</label><br>
+          <input type="radio" id="mistake_escelated" name="task_state" value="mistake-escelated">
+          <label for="mistake_escelated">Mistake Escelated</label><br>
+          <input type="radio" id="nearly_fixed" name="task_state" value="nearly-fixed">
+          <label for="nearly_fixed">Nearly Fixed</label><br>
+          <input type="radio" id="almost_done" name="task_state" value="almost-done">
+          <label for="almost_done">Almost Done</label><br>
+        </form> 
+        <br>
+        <label for="step">Step:</label>
+        <input class="button" id="step">
+        <div id = "result"></div>
+        <br>
+
+        <form>
+            <input type="radio" id="intro" name="script" value="intro">
+            <label for="intro">Introduction</label><br>
+            <input type="radio" id="color" name="script" value="color">
+            <label for="color">Color</label><br>
+            <input type="radio" id="game" name="script" value="game">
+            <label for="game">Game</label>
+          </form> 

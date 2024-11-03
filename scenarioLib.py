@@ -14,8 +14,8 @@ class RelationshipGame:
         self.subtle_scenarios = [1, 2, 3, 4, 5]
         self.obvious_scenarios = [1, 2, 3, 4, 5]
 
-    def writeSth(self):
-        st.write("SOMETHING!")
+    def writeSth(str):
+        return str
 
     def start_game(self):
         st.write("Welcome to 'Signs of the Relationship'!")
@@ -40,9 +40,8 @@ class RelationshipGame:
                         self.obvious_scenario3()
                         self.obvious_scenarios.remove(sNum)
                 else:
-                    st.write(f"\nYou ran out of same scenarios. Your final Doubt Meter level is: {self.doubt_meter}")
                     self.end_game()
-                    return 0
+                    return False
             elif self.doubt_meter >= 4:
                 if (sNum in self.subtle_scenarios):
                     self.scenario_count += 1
@@ -56,9 +55,8 @@ class RelationshipGame:
                         self.subtle_scenario3()
                         self.subtle_scenarios.remove(sNum)
                 else:
-                    st.write(f"\nYou ran out of same scenarios. Your final Doubt Meter level is: {self.doubt_meter}")
                     self.end_game()
-                    return 0
+                    return False
             else:
                 if (sNum in self.neutral_scenarios):
                     self.scenario_count += 1
@@ -72,33 +70,25 @@ class RelationshipGame:
                         self.neutral_scenario3()
                         self.neutral_scenarios.remove(sNum)
                 else:
-                    st.write(f"\nYou ran out of same scenarios. Your final Doubt Meter level is: {self.doubt_meter}")
                     self.end_game()
-                    return 0
+                    return False
 
         st.write(f"\nYour final Doubt Meter level is: {self.doubt_meter}")
         self.end_game()
-        return 0
+        return True
+    
+    def rtnScene(self, string, choice = None):
+        from app import choice
+        return string, choice
 
     def obvious_scenario1(self):
         # An obvious red flag scenario if doubt is low
-        st.write(f"\nScenario {self.scenario_count}: Your partner checks your phone without asking.")
-        st.write("They say they're just 'making sure' you're being honest.")
-        st.write("1. Ask them to respect your privacy\n2. Allow it, hoping it reassures them\n3. Confront them and express discomfort")
+        string = f"\nScenario {self.scenario_count}: Your partner checks your phone without asking." + "\n" + "They say they're just 'making sure' you're being honest." + "\n" + "1. Ask them to respect your privacy\n2. Allow it, hoping it reassures them\n3. Confront them and express discomfort"
 
-        choice = input("Enter the number of your choice: ")
-
-        if choice == "1":
-            st.write("You ask them to respect your privacy, but they brush it off.")
-            self.doubt_meter += 0
-        elif choice == "2":
-            st.write("You let them check, feeling uneasy but hoping it calms their fears.")
-            self.doubt_meter -= 1
-        elif choice == "3":
-            st.write("You express discomfort, and they respond with defensiveness.")
-            self.doubt_meter += 1
-        else:
-            st.write("Invalid choice. Try again.")
+        choice[0] = "You ask them to respect your privacy, but they brush it off."
+        choice[-1] = "You let them check, feeling uneasy but hoping it calms their fears."
+        choice[1] = "You express discomfort, and they respond with defensiveness."
+        return string, choice # string, dictionary
 
     def obvious_scenario2(self):
         # An obvious red flag scenario if doubt is low
