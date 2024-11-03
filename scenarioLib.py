@@ -271,9 +271,17 @@ class RelationshipGame:
 
 # Start the game
 
+st.set_page_config(layout="wide")
+
 if st.button("Start Game"):
     game = RelationshipGame()
     game.start_game()
     game.writeSth()
 if st.button("Instructions"):
     st.write("Instructions:  ")
+
+css = """
+       <style>
+       </style>
+       """
+st.markdown(css, unsafe_allow_html=True)
