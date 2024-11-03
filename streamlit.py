@@ -3,6 +3,12 @@ import Person as p
 import Scenario as s
 import scenarioLib as lib
 import time
+import inkle
+
+
+if st.button == "Choice1":
+    st.write("Choice1")
+
 
 # Function to display text with a typing effect
 def type_text(text, delay=0.1):
