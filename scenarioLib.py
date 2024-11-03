@@ -19,9 +19,20 @@ class RelationshipGame:
         string = "Welcome to 'Signs of the Relationship'!" + "\n" + "You've been dating your partner for six months, but recently you've noticed a few unsettling things." + "\n" + "Throughout this game, you'll experience different situations and make choices that affect your doubt level."  + "\n" +  "Let's see how your relationship unfolds...\n"
         return string
 
+    
+    def get_random_scenario(self, scenarios):
+        """Generate a random number and ensure it hasn’t been used yet.
+           Reset scenarios if all have been used."""
+        if not scenarios:  # Reset the scenarios list if empty
+            return -1
+        
+        sNum = r.choice(scenarios)
+        scenarios.remove(sNum)
+        return sNum
+
     def relationship_scenarios(self):
-        sNum = r.randint(1,3)
         if self.doubt_meter <= 0:
+            sNum = self.get_random_scenario(self.obvious_scenarios)
             if (sNum in self.obvious_scenarios):
                 self.scenario_count += 1
                 if (sNum == 1):
@@ -36,6 +47,7 @@ class RelationshipGame:
             else:
                 return self.end_game()
         elif self.doubt_meter >= 4:
+            sNum = self.get_random_scenario(self.subtle_scenarios)
             if (sNum in self.subtle_scenarios):
                 self.scenario_count += 1
                 if (sNum == 1):
@@ -50,6 +62,7 @@ class RelationshipGame:
             else:
                 return self.end_game()
         elif self.doubt_meter < 4 and self.doubt_meter > 0:
+            sNum = self.get_random_scenario(self.neutral_scenarios)
             if (sNum in self.neutral_scenarios):
                 self.scenario_count += 1
                 if (sNum == 1):
